@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Projects | SIDDHI Engineers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .bg-brand-maroon {
+            background-color: #5a1e2d;
+        }
+
+        .text-brand-maroon {
+            color: #5a1e2d;
+        }
+
+        .border-brand-maroon {
+            border-color: #5a1e2d;
+        }
+
+        .glass-header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(200, 200, 200, 0.3);
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #5a1e2d;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .timeline-item.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            right: -12px;
+            background-color: white;
+            border: 4px solid #5a1e2d;
+            top: 25px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-left {
+            left: 0;
+        }
+
+        .timeline-right {
+            left: 50%;
+        }
+
+        .timeline-right::after {
+            left: -12px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        @media screen and (max-width: 768px) {
+            .timeline-container::after {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 60px;
+                padding-right: 15px;
+            }
+
+            .timeline-left,
+            .timeline-right {
+                left: 0;
+            }
+
+            .timeline-item::after {
+                left: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Header -->
+    <header class="glass-header sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <a href="index.html" class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-brand-maroon flex items-center justify-center rounded-md shadow-md">
+                        <div class="w-6 h-6 bg-white rounded-sm"></div>
+                    </div>
+                    <h1 class="text-xl md:text-2xl font-bold text-brand-maroon">SIDDHI Engineers</h1>
+                </a>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html#about"
+                    class="font-semibold text-gray-600 hover:text-brand-maroon transition duration-300">About</a>
+                <a href="index.html#services"
+                    class="font-semibold text-gray-600 hover:text-brand-maroon transition duration-300">Services</a>
+                <a href="projects.html" class="font-bold text-brand-maroon transition duration-300">Projects</a>
+                <a href="index.html#contact"
+                    class="font-semibold text-gray-600 hover:text-brand-maroon transition duration-300">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <a href="index.html#about" class="block py-2 px-4 text-sm font-semibold hover:bg-gray-50">About</a>
+            <a href="index.html#services" class="block py-2 px-4 text-sm font-semibold hover:bg-gray-50">Services</a>
+            <a href="projects.html" class="block py-2 px-4 text-sm font-bold text-brand-maroon bg-red-50">Projects</a>
+            <a href="index.html#contact" class="block py-2 px-4 text-sm font-semibold hover:bg-gray-50">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 md:py-28">
+            <div class="container mx-auto px-6">
+                <h3 class="text-3xl md:text-4xl font-bold text-brand-maroon mb-16 text-center">Our Journey Through Time
+                </h3>
+                <div id="project-timeline" class="timeline-container">
+                    <!-- Project timeline items will be injected here by script -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center py-8">
+        <div class="container mx-auto">
+            <p>&copy; <span id="year"></span> SIDDHI Engineers. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Project Data from PDF
+        const projects = [
+            { year: "2019-20", name: "Anand Ilyf", work: "2 High-rise", location: "Tragad", developer: "Anand Developers", mapQuery: "Anand+Ilyf+Tragad+Ahmedabad" },
+            { year: "2017-18", name: "Abaj Electronics", work: "P.E.B. Structure (Industrial) With Material", location: "Vadu, Ghumasan Road", developer: "Abaj Electronics", mapQuery: "Vadu+Ghumasan+Road+Gujarat" },
+            { year: "2016-17", name: "Dev Aurum", work: "1 High-rise", location: "Anand Nagar", developer: "Dev Corporation", mapQuery: "Dev+Aurum+Anand+Nagar+Ahmedabad" },
+            { year: "2014-15", name: "Ganesh Housing C.O.P. & Banquet Hall", work: "With Material", location: "Malabar County, Vaishnavdevi Circle", developer: "Ganesh Housing Developers", mapQuery: "Malabar+County+2+Vaishnodevi+Circle+Ahmedabad" },
+            { year: "2013-14", name: "Gulmahor Auris", work: "1 Low-rise", location: "Ambawadi", developer: "Trilokesh Developers", mapQuery: "Gulmohar+Auris+Ambawadi+Ahmedabad" },
+            { year: "2012-13", name: "Swaminarayan Park-II", work: "3 Highrises", location: "Vasna", developer: "Dharmdev Infrastructure", mapQuery: "Swaminarayan+Park+Vasna+Ahmedabad" },
+            { year: "2010-11", name: "Riverside Park Phase-ll", work: "2 Highrises", location: "Vasna", developer: "Trilokesh Developers", mapQuery: "Riverside+Park+Vasna+Ahmedabad" },
+            { year: "2009-10", name: "Riverside Park Phase-I", work: "2 Highrises", location: "Vasna", developer: "Trilokesh Developers", mapQuery: "Riverside+Park+Vasna+Ahmedabad" },
+            { year: "2009-10", name: "Angi-I Apartment", work: "1 Block Low-rise", location: "Near General Co.Op. Bank, Naranpura Crossing", developer: "Angi Developers", mapQuery: "Naranpura+Crossing+Ahmedabad" },
+            { year: "2008-09", name: "P. N. House", work: "1 Block Low-rise", location: "Near Prabhudas Thakkar College, Paldi", developer: "Komal Developers", mapQuery: "Prabhudas+Thakkar+College+Paldi+Ahmedabad" },
+            { year: "2008-09", name: "Mallinath Apartment", work: "3 Blocks Low-rise (All Labour)", location: "Near Ambedkar Bridge, Vasana", developer: "Mallinath Developers", mapQuery: "Ambedkar+Bridge+Vasana+Ahmedabad" },
+            { year: "2007-08", name: "Shalin Apartment", work: "1 Block Low-rise", location: "B/h. Sachin Tower, Shyamal Cross Road", developer: "Shalin Developers", mapQuery: "Shyamal+Cross+Road+Ahmedabad" },
+            { year: "2007-08", name: "Gulmohar Foliage", work: "1 Block, Low-rise", location: "B/h. C.N.Vidyalaya, Nr. Reliance Petrol Pump", developer: "Trilokesh Devlopers", mapQuery: "C+N+Vidyalaya+Ambawadi+Ahmedabad" },
+            { year: "2006-07", name: "Shukan Mall", work: "1 Block Low-rise", location: "Near Rajasthan Hospital, Shahibaug", developer: "Shukan Developers", mapQuery: "Rajasthan+Hospital+Shahibaug+Ahmedabad" },
+            { year: "2006-07", name: "Astha Apartment", work: "1 Block Low-rise", location: "Ghatlodia", developer: "Astha Developers", mapQuery: "Ghatlodia+Ahmedabad" },
+            { year: "2006-07", name: "Angi Apartment", work: "1 Block Low-rise", location: "B/h. Vardan Tower, Shashtrinagar, Naranpura", developer: "Angi Developers", mapQuery: "Vardan+Tower+Shastrinagar+Ahmedabad" },
+            { year: "2005-06", name: "Madhav Residency", work: "2 Blocks Low-rise", location: "Shereton Complex, Opp. Ketav Petrol Pump, Ambawadi", developer: "Giriraj Associates", mapQuery: "Ketav+Petrol+Pump+Ambawadi+Ahmedabad" },
+            { year: "2004-05", name: "Shivalik Plaza", work: "2 Blocks Low-rise", location: "Panjra Pole, Ambawadi", developer: "S. N. Developers", mapQuery: "Shivalik+Plaza+Ambawadi+Ahmedabad" },
+            { year: "2004", name: "Karai Police Academy", work: "2 Blocks Low-rise", location: "Karai, Near Nana Chiloda", developer: "Ashish Construction", mapQuery: "Gujarat+Police+Academy+Karai+Gandhinagar" },
+            { year: "1999-01, 2003", name: "Radhe Apartment", work: "11 Blocks Low-rise (RCC + Masonary)", location: "Opp. Asopalav Bunglows, Bhaikaka Nagar, Thaltej", developer: "Kamdhenu Developers (Kamla Kamdhenu Hall)", mapQuery: "Bhaikaka+Nagar+Thaltej+Ahmedabad" },
+            { year: "1998-99", name: "Shankhnad Apartment", work: "1 Block Low-rise", location: "Opp. Torrent Power, Naranpura", developer: "Krishna Developers", mapQuery: "Torrent+Power+Naranpura+Ahmedabad" },
+            { year: "1998", name: "Akanxa Apartment", work: "1 Block Low-rise", location: "Near Sola Rly. Crossing, Sola Road", developer: "Aakar Corporation", mapQuery: "Sola+Railway+Crossing+Ahmedabad" },
+            { year: "1996-97", name: "Shalimar Flats", work: "4 Blocks Low-rise", location: "Shalimar Bunglows Near, Shahibaug. Under Bridge", developer: "Dr. Ambalal Patel", mapQuery: "Shahibaug+Under+Bridge+Ahmedabad" }
+        ];
+
+        function populateProjectTimeline() {
+            const timelineContainer = document.getElementById('project-timeline');
+            if (!timelineContainer) return;
+
+            projects.forEach((project, index) => {
+                const side = index % 2 === 0 ? 'timeline-left' : 'timeline-right';
+                const itemHTML = `
+                    <div class="timeline-item ${side}">
+                        <div class="timeline-content">
+                            <span class="text-sm font-semibold text-brand-maroon">${project.year}</span>
+                            <h4 class="text-lg font-bold text-gray-800 mt-1 mb-2">${project.name}</h4>
+                            <p class="text-sm text-gray-500 mb-2">${project.work}</p>
+                            <p class="text-sm text-gray-600 mb-1"><strong>Location:</strong> ${project.location}</p>
+                            <p class="text-sm text-gray-600 mb-3"><strong>Developer:</strong> ${project.developer}</p>
+                            <a href="https://www.google.com/maps/search/?api=1&query=${project.mapQuery}" target="_blank" class="text-sm font-bold text-brand-maroon hover:underline">
+                                View on Map &rarr;
+                            </a>
+                        </div>
+                    </div>
+                `;
+                timelineContainer.innerHTML += itemHTML;
+            });
+        }
+
+        function setupTimelineAnimations() {
+            const sections = document.querySelectorAll('.timeline-item');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+
+        function handleMobileMenu() {
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (!menuBtn || !mobileMenu) return;
+
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('year').textContent = new Date().getFullYear();
+            populateProjectTimeline();
+            setupTimelineAnimations();
+            handleMobileMenu();
+        });
+    </script>
+
+</body>
+
+</html>
